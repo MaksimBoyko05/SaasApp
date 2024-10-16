@@ -3,14 +3,22 @@ import PocketBase from 'pocketbase'
 
 import LayoutApp from '@layouts/LayoutApp.astro'
 
+import ProjectCard from '@components/app/projects/ProjectCard.astro'
+
 const pb = new PocketBase('http://127.0.0.1:8090')
 
 const projects = await 
 pb.collection('projects').getFullList()
 ---
 <LayoutApp title='Dashboard'>
-
-<ul>
-    {projects.map(project => <li>{project.name}</li>)}
+<div class='py-10 mx-auto text-white max-w-7x1 space-y-6'>
+<div class='rounded-lg bg-zinc-900 px-5 py-4 sm:py-2.5 text-xl 
+sm:text-3x1 md:text-5x1 text-white uppercase text-center 
+font-extrabold'>
+    Projects
+</div>
+<ul class='grid gap-6 sm:grid-cols-2'>
+    {projects.map(project => <ProjectCard project={project}/>)}
 </ul>
+</div>
 </LayoutApp>
