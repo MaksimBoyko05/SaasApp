@@ -4,6 +4,7 @@ export const pb = new PocketBase(
   import.meta.env.POCKETBASE_URL ||
     process.env.POCKETBASE_URL
 )
+
 export async function getProjects() {
   const projects = await pb
     .collection('projects')
@@ -42,13 +43,14 @@ export async function addTask(
 }
 
 export async function getTasks(project_id: string) {
+ console.log(project_id);
   const options = {
     filter: `project = "${project_id}"`
   }
-
+console.log(options);
   const tasks = await pb
     .collection('tasks')
     .getFullList(options)
-
+console.log(tasks);
   return tasks
 }
