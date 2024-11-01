@@ -81,3 +81,6 @@ function getStatus(project: ProjectsResponse) {
     return 0;
     }
   }
+  export async function deleteProject(id: string){
+    await pb.collection('projects').delete(id)
+  }
