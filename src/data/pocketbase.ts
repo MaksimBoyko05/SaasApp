@@ -76,6 +76,21 @@ export async function getTasks({
 
   return tasks
 }
+export async function getStarredTasks(): Promise<
+  TasksResponse<TexpandProject>[]
+> {
+  const options = {
+    sort: '-starred_on',
+    filter: 'starred = true && completed = false',
+    expand: 'project',
+  }
+
+  const tasks: TasksResponse<TexpandProject>[] = await pb
+    .collection('tasks')
+    .getFullList(options)
+
+  return tasks
+}
 
 function getStatus(project: ProjectsResponse) {
   switch (project.status) {
@@ -110,4 +125,10 @@ export async function updateProject(
 }
 export async function deleteTask (id: string) {
   await pb.collection('tasks').delete(id)
+}
+export async function updateTask(
+  id: string,
+  data: TasksRecord,
+){
+  await pb.collection('tasks').update(id, data)
 }

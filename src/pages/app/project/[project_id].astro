@@ -20,9 +20,7 @@ if (!project) {
       <div class='sm:hidden'>
         <HamburgerMenuButton />
       </div>
-      <span 
-      hx-get=`/app/modals/project/${project.id}/edit` 
-      hx-target='dialog'>
+      <span hx-get=`/app/modals/project/${project.id}/edit` hx-target='dialog'>
         {project.name}
       </span>
     </div>
@@ -63,7 +61,7 @@ if (!project) {
         </h2>
 
         <div id='tasks-done'>
-          <!-- <TasksList done={true} project_id={project_id} /> -->
+          <TasksList done={true} project_id={project_id} />
         </div>
       </div>
 
