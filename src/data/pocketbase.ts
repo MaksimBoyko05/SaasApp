@@ -21,6 +21,7 @@ export const pb = new PocketBase(
 pb.autoCancellation(false)
 
 export async function getProjects() {
+  console.log('getProjects')
   const projects = await pb
     .collection('projects')
     .getFullList()
